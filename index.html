@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Biraj Rijal_portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #132040;
+      --navy-light: #1e3058;
+      --gold: #c9a84c;
+      --gold-light: #e2c97e;
+      --cream: #f5f0e8;
+      --white: #ffffff;
+      --text-dim: #8a9ab5;
+      --border: rgba(201,168,76,0.18);
+      --section-pad: 100px 0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--cream);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 60px;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      animation: fadeDown 0.8s ease forwards;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: var(--text-dim); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 140px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 80% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(30,48,88,0.8) 0%, transparent 60%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 720px; }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 2px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700; line-height: 1.08;
+      color: var(--white);
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero-name span { color: var(--gold); }
+    .hero-subtitle {
+      font-size: 1.15rem; font-weight: 300;
+      color: var(--text-dim);
+      margin: 20px 0 36px;
+      max-width: 500px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .hero-cta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.65s ease both;
+    }
+    .btn {
+      display: inline-block; padding: 13px 30px;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; border-radius: 2px;
+      transition: all 0.25s;
+      cursor: pointer; border: none;
+    }
+    .btn-gold {
+      background: var(--gold); color: var(--navy);
+    }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .btn-outline:hover { background: rgba(201,168,76,0.1); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute; bottom: 40px; left: 60px;
+      display: flex; align-items: center; gap: 12px;
+      color: var(--text-dim); font-size: 0.75rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      animation: fadeUp 0.8s 0.9s ease both;
+    }
+    .scroll-line {
+      width: 40px; height: 1px; background: var(--gold);
+      animation: expandLine 1.2s 1.2s ease both;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: var(--section-pad); }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 700; color: var(--white);
+      margin-bottom: 48px;
+      line-height: 1.15;
+    }
+    .section-divider {
+      width: 48px; height: 2px;
+      background: var(--gold);
+      margin: 16px 0 48px;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--navy-mid); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .about-text p {
+      color: var(--text-dim); margin-bottom: 20px;
+      font-size: 1.02rem;
+    }
+    .about-text p strong { color: var(--cream); font-weight: 500; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .stat-box {
+      border: 1px solid var(--border);
+      padding: 28px 24px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .stat-box:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { color: var(--text-dim); font-size: 0.85rem; margin-top: 6px; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--navy); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .skill-card {
+      border: 1px solid var(--border);
+      padding: 32px;
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+      transition: all 0.25s;
+    }
+    .skill-card:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.04);
+      transform: translateY(-4px);
+    }
+    .skill-icon { font-size: 1.8rem; margin-bottom: 16px; }
+    .skill-cat {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white); margin-bottom: 14px;
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      color: var(--gold-light);
+      font-size: 0.75rem; padding: 4px 10px;
+      border-radius: 2px; letter-spacing: 0.04em;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--navy-mid); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+      transition: all 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .project-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .project-header {
+      padding: 28px 28px 0;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .project-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem; font-weight: 700;
+      color: rgba(201,168,76,0.15); line-height: 1;
+    }
+    .project-links { display: flex; gap: 12px; }
+    .project-link {
+      color: var(--text-dim); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+      transition: all 0.2s;
+    }
+    .project-link:hover { color: var(--gold); border-color: var(--gold); }
+    .project-body { padding: 20px 28px 28px; flex: 1; }
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .project-desc { color: var(--text-dim); font-size: 0.92rem; margin-bottom: 20px; }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tag {
+      background: rgba(30,48,88,0.8);
+      color: var(--text-dim);
+      font-size: 0.72rem; padding: 3px 9px;
+      border-radius: 2px; letter-spacing: 0.05em;
+    }
+
+    /* ── BLOG ── */
+    #blog { background: var(--navy); }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .blog-card {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 32px;
+      background: rgba(255,255,255,0.02);
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+    .blog-card:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.04);
+      transform: translateY(-4px);
+    }
+    .blog-date { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.1em; margin-bottom: 12px; }
+    .blog-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 600;
+      color: var(--white); margin-bottom: 12px; line-height: 1.35;
+    }
+    .blog-excerpt { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 20px; }
+    .blog-read {
+      color: var(--gold); font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* ── RESUME ── */
+    #resume { background: var(--navy-mid); }
+    .resume-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    }
+    .resume-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--white);
+      margin-bottom: 28px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-item { margin-bottom: 32px; padding-left: 20px; position: relative; }
+    .timeline-item::before {
+      content: '';
+      position: absolute; left: 0; top: 8px;
+      width: 6px; height: 6px;
+      border: 1px solid var(--gold);
+      border-radius: 50%; background: var(--gold);
+    }
+    .timeline-item::after {
+      content: '';
+      position: absolute; left: 2.5px; top: 18px;
+      width: 1px; bottom: -24px;
+      background: var(--border);
+    }
+    .timeline-item:last-child::after { display: none; }
+    .timeline-period {
+      font-size: 0.75rem; color: var(--gold);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px;
+    }
+    .timeline-title { font-weight: 500; color: var(--white); margin-bottom: 4px; }
+    .timeline-org { color: var(--text-dim); font-size: 0.88rem; }
+    .resume-download {
+      margin-top: 48px; text-align: center;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--navy); }
+    .contact-inner {
+      max-width: 640px; margin: 0 auto; text-align: center;
+    }
+    .contact-inner .section-label { justify-content: center; display: block; }
+    .contact-inner .section-title { text-align: center; }
+    .contact-inner p { color: var(--text-dim); margin-bottom: 40px; font-size: 1.02rem; }
+    .contact-email {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; color: var(--gold);
+      text-decoration: none; display: block;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+    .contact-email:hover { color: var(--gold-light); }
+    .social-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .social-link {
+      border: 1px solid var(--border);
+      color: var(--text-dim); text-decoration: none;
+      padding: 10px 22px; border-radius: 2px;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      color: var(--text-dim); font-size: 0.8rem;
+    }
+    footer span { color: var(--gold); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandLine {
+      from { width: 0; }
+      to { width: 40px; }
+    }
+
+    /* scroll reveal */
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 0.75rem; }
+      #hero { padding: 120px 24px 80px; }
+      .hero-scroll { left: 24px; }
+      .container { padding: 0 24px; }
+      .about-grid, .resume-layout { grid-template-columns: 1fr; gap: 40px; }
+      footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">BR</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Learner · Nepal</div>
+      <h1 class="hero-name">Biraj<br/><span>Rijal</span></h1>
+      <p class="hero-subtitle">Turning raw data into meaningful insight. I build machine learning models, analyze complex datasets, and communicate findings that drive decisions.</p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-gold">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <div class="section-label">Who I Am</div>
+          <h2 class="section-title">About Me</h2>
+          <div class="section-divider"></div>
+          <p>Hi, I'm <strong>Biraj Rijal</strong>, a machine learning enthusiast based in <strong>Kathmandu, Nepal</strong>. I'm passionate about applying machine learning and statistical analysis to solve real-world problems.</p>
+          <p>Currently studying and building projects across audio signal processing, NLP, and predictive modeling. I believe data tells a story — my job is to find it and communicate it clearly.</p>
+          <p>When I'm not training models, I'm exploring new datasets, writing about what I learn, or contributing to open-source projects.</p>
+        </div>
+        <div class="about-stats reveal">
+          <div class="stat-box">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">ML Frameworks Used</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Years of Learning</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Curiosity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label reveal">What I Know</div>
+      <h2 class="section-title reveal">Skills</h2>
+      <div class="section-divider reveal"></div>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon">🤖</div>
+          <div class="skill-cat">Machine Learning</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">XGBoost</span>
+            <span class="skill-tag">Random Forests</span>
+            <span class="skill-tag">SVM</span>
+            <span class="skill-tag">Neural Networks</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🔊</div>
+          <div class="skill-cat">Audio & Signal Processing</div>
+          <div class="skill-tags">
+            <span class="skill-tag">MFCC</span>
+            <span class="skill-tag">Librosa</span>
+            <span class="skill-tag">Linear SVM</span>
+            <span class="skill-tag">Feature Extraction</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">📊</div>
+          <div class="skill-cat">Data Analysis</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Seaborn</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🧠</div>
+          <div class="skill-cat">Deep Learning</div>
+          <div class="skill-tags">
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">CNNs</span>
+            <span class="skill-tag">RNNs</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🛠️</div>
+          <div class="skill-cat">Tools & Platforms</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Jupyter</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">VS Code</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">GitHub</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon">🌐</div>
+          <div class="skill-cat">Web & Deployment</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">GitHub Pages</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label reveal">What I've Built</div>
+      <h2 class="section-title reveal">Projects</h2>
+      <div class="section-divider reveal"></div>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-num">01</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub ↗</a>
+              <a href="#" class="project-link">Demo ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Audio Classification with MFCC</div>
+            <p class="project-desc">Extracted MFCC features from audio signals and trained a Linear SVM classifier to distinguish between audio classes with high accuracy.</p>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Librosa</span>
+              <span class="stack-tag">SVM</span>
+              <span class="stack-tag">MFCC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-num">02</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Random Forest Classifier</div>
+            <p class="project-desc">Built and tuned a Random Forest model for structured tabular data, achieving strong predictive performance through careful feature engineering.</p>
+            <div class="project-stack">
+              <span class="stack-tag">Python</span>
+              <span class="stack-tag">Scikit-learn</span>
+              <span class="stack-tag">Pandas</span>
+              <span class="stack-tag">Random Forests</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div class="project-header">
+            <div class="project-num">03</div>
+            <div class="project-links">
+              <a href="#" class="project-link">GitHub ↗</a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-title">Practical Deep Learning</div>
+            <p class="project-desc">Implemented and experimented with deep learning architectures for image and text classification tasks using modern frameworks.</p>
+            <div class="project-stack">
+              <span class="stack-tag">PyTorch</span>
+              <span class="stack-tag">CNNs</span>
+              <span class="stack-tag">Transfer Learning</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-label reveal">My Writing</div>
+      <h2 class="section-title reveal">Blog</h2>
+      <div class="section-divider reveal"></div>
+      <div class="blog-grid">
+
+        <div class="blog-card reveal">
+          <div class="blog-date">March 2026</div>
+          <div class="blog-title">Understanding MFCC Features for Audio Classification</div>
+          <p class="blog-excerpt">A deep dive into Mel-Frequency Cepstral Coefficients and how they're used to represent audio signals for machine learning tasks.</p>
+          <div class="blog-read">Read more →</div>
+        </div>
+
+        <div class="blog-card reveal">
+          <div class="blog-date">February 2026</div>
+          <div class="blog-title">Why Random Forests Are Still Competitive in 2026</div>
+          <p class="blog-excerpt">Despite the rise of deep learning, ensemble tree methods continue to dominate structured data problems. Here's why.</p>
+          <div class="blog-read">Read more →</div>
+        </div>
+
+        <div class="blog-card reveal">
+          <div class="blog-date">January 2026</div>
+          <div class="blog-title">Getting Started with Data Science in Nepal</div>
+          <p class="blog-excerpt">Resources, communities, and paths for aspiring data scientists in Nepal — what worked for me and what I'd do differently.</p>
+          <div class="blog-read">Read more →</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-label reveal">My Background</div>
+      <h2 class="section-title reveal">Resume</h2>
+      <div class="section-divider reveal"></div>
+      <div class="resume-layout">
+        <div class="resume-col reveal">
+          <h3>Education</h3>
+          <div class="timeline-item">
+            <div class="timeline-period">2022 — Present</div>
+            <div class="timeline-title">Bachelor's in Electronics, Communication and Information Engineering</div>
+            <div class="timeline-org">I.O.E, Thapathali Campus, Kathmandu</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2021</div>
+            <div class="timeline-title">Data Science Specialization</div>
+            <div class="timeline-org">Coursera / Online</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2020</div>
+            <div class="timeline-title">Higher Secondary (+2)</div>
+            <div class="timeline-org">NIST, Lainchaur, Kathmandu, Nepal</div>
+          </div>
+        </div>
+        <div class="resume-col reveal">
+          <h3>Experience & Courses</h3>
+          <div class="timeline-item">
+            <div class="timeline-period">2025 — Present</div>
+            <div class="timeline-title">Practical Deep Learning (fast.ai)</div>
+            <div class="timeline-org">Self-directed study</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2024</div>
+            <div class="timeline-title">Data Science Projects</div>
+            <div class="timeline-org">Independent / GitHub</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2023</div>
+            <div class="timeline-title">Introduction to ML & Statistics</div>
+            <div class="timeline-org">Online Coursework</div>
+          </div>
+        </div>
+      </div>
+      <div class="resume-download reveal">
+        <a href="#" class="btn btn-gold">Download Full Resume (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="section-label reveal">Let's Connect</div>
+        <h2 class="section-title reveal">Get In Touch</h2>
+        <div class="section-divider reveal" style="margin: 16px auto 32px;"></div>
+        <p class="reveal">I'm open to collaborations, research opportunities, and interesting data problems. Feel free to reach out!</p>
+        <a href="mailto:hello@birajrijal.com.np" class="contact-email reveal">hello@birajrijal.com.np</a>
+        <div class="social-links reveal">
+          <a href="#" class="social-link">GitHub</a>
+          <a href="#" class="social-link">LinkedIn</a>
+          <a href="#" class="social-link">Twitter / X</a>
+          <a href="#" class="social-link">Kaggle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2026 <span>Biraj Rijal</span>. All rights reserved.</div>
+    <div>Built with care · <span>birajrijal.com.np</span></div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current
+          ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
